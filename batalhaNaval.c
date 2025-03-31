@@ -1,19 +1,51 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+int main(){
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+int linhas[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'}; //Vetor para colunas
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    int matriz[10][10];        //Matriz montada
+        for (int l = 0; l < 10; l++){
+            for (int c = 0; c < 10; c++){
+
+                if(c > 2 && c <6 && l == 8 - 1){ // Barco na horizontal
+                    matriz[l][c] = 3;
+
+                } else if (l > 3 && l <7 && c == 1 - 1){ // Barco na vertical
+                    matriz[l][c] = 3;
+
+                } else if (l == c && l < 3) { // Barco na diagonal esquerda
+                    matriz[l][c] = 3;
+
+                } else if (l + c == 10 && c > 4 && c < 8) { // Barco na diagonal direita
+                    matriz[l][c] = 3;
+
+                } else
+                matriz[l][c] = 0; // Mar
+            } 
+        }
+    
+    printf("  "); //Espaço para identação ficar correta no terminal
+
+    for (int i = 0; i < 10; i++) {   //Declaração das colunas
+        printf(" %c", linhas[i]);
+    }
+
+    for(int j = 1, x = 0; j <= 10 && x < 10; j++, x++){ //Declaração linhas
+        
+        if (j < 10){
+        printf("\n %d ", j);
+        } else{
+        printf("\n%d ", j);
+        }
+            
+            for (int y = 0; y < 10; y++) {        
+               printf("%d ", matriz[x][y]);
+            }
+    }
+    return 0;
+}
+
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
@@ -36,5 +68,3 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-    return 0;
-}
